@@ -1,0 +1,179 @@
+{
+  "consumer": {
+    "name": "enroll-service-svc"
+  },
+  "interactions": [
+    {
+      "description": "check student Id before enrolling for course",
+      "key": "eda011af",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "existing student"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/students/1"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "age": 23,
+            "email": "john@example.com",
+            "govtId": "IND001",
+            "id": 1,
+            "name": "John Doe"
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.govtId": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ]
+            },
+            "$.name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "transport": "https",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "create student before enrolling for course",
+      "key": "1284be4d",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "for non-existing student"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "age": 23,
+            "email": "john@example.com",
+            "govtId": "IND001",
+            "name": "John Doe"
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.govtId": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          }
+        },
+        "method": "POST",
+        "path": "/students"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "age": 23,
+            "email": "john@example.com",
+            "govtId": "IND001",
+            "id": 1,
+            "name": "John Doe"
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.govtId": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ]
+            },
+            "$.name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "transport": "https",
+      "type": "Synchronous/HTTP"
+    }
+  ],
+  "metadata": {
+    "pact-jvm": {
+      "version": "4.6.11"
+    },
+    "pactSpecification": {
+      "version": "4.0"
+    }
+  },
+  "provider": {
+    "name": "student-service-svc"
+  }
+}

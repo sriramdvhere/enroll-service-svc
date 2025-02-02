@@ -1,0 +1,4 @@
+com\practice\enroll\service\EnrollmentRepositoryTests.class
+com\practice\enroll\service\contracts\ContractForStudentSvcTest.class
+com\practice\enroll\service\EnrollmentControllerTests.class
+com\practice\enroll\service\EnrollServiceSvcApplicationTests.class
